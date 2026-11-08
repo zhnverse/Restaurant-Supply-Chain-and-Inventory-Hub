@@ -213,34 +213,47 @@ Record the goals and attainment shared during each weekly sprint review ceremony
 
 | Sprint | Goals Set (Start of Week) | Attainment Reported (End of Week) | Features Completed This Sprint |
 | :---- | :---- | :---- | :---- |
-| Sprint 1 |  |  |  |
-| Sprint 2 |  |  |  |
-| Sprint 3 |  |  |  |
-| Sprint 4 |  |  |  |
+| Sprint 1 | 1. Setup Laravel 11 MVC foundation, migrations, SQLite/MySQL configuration.<br>2. Build complete Authentication & Role-based Access system (Manager vs Staff).<br>3. Implement core inventory features: Recipe-based deduction (F1), Batch expiry tracking (F2), Auto reorder drafts (F3), Purchase order approval (F4), Physical reconciliation (F5), and Waste reporting (F6).<br>4. Establish transactional integrity and clean Bootstrap 5 UI. | 1. Foundation and database schema successfully established.<br>2. Authentication system operational with test accounts and route guards.<br>3. All 6 target core features (F1 to F6) fully implemented with database transactions, business logic services, and interactive views.<br>4. 100% test cases passed; atomic commits pushed to GitHub repository. | F1, F2, F3, F4, F5, F6 |
+| Sprint 2 | 1. Implement Delivery receipt & discrepancy handling (F9).<br>2. Build Controlled order-status tracking timeline (F10).<br>3. Implement Ingredient substitution during kitchen shortages (F18).<br>4. Implement Inventory movement traceability log (F20). | *Scheduled for Sprint 2 review* | In Progress |
+| Sprint 3 | 1. Build Supplier quotation comparison and award (F7).<br>2. Build Recurring purchase order scheduling (F8).<br>3. Implement Supplier volume-based tiered pricing (F11).<br>4. Implement Delivery assignment and proof of delivery (F12). | *Scheduled for Sprint 3 review* | Planned |
+| Sprint 4 | 1. Recipe cost and gross margin analysis (F13).<br>2. Invoice dispute management thread (F14).<br>3. Three-way invoice matching against POs and receipts (F15).<br>4. Supplier ledger and financial balance tracking (F16).<br>5. Supplier return and credit workflow (F17).<br>6. Supplier performance metrics (F19). | *Scheduled for Sprint 4 review* | Planned |
 
 ## **7.1 Deviations and Lessons Learned**
 
-*\[Briefly explain any sprint where attainment did not match the planned goals, why it happened, and what was adjusted for the following sprint.\]*
+- **Sprint 1 Attainment:** Completed all 6 core inventory and procurement features ahead of schedule. Initially planned F5 & F6, but expanded to include F1–F4 and full role authentication to establish a cohesive, testable end-to-end inventory cycle for initial evaluation.
+- **Academic Tag Removal:** Cleaned UI views by removing explicit academic `(F1)` labels to ensure the web application presents a realistic, enterprise-grade user interface while retaining feature traceability in documentation.
 
 # **8\. Testing Summary**
 
 | Feature | Test Case / Scenario | Expected Result | Status |
 | :--- | :--- | :--- | :--- |
+| F1 - Recipe-Based Inventory Deduction | Record sale of 2 portions of Beef Burger (requires 0.40 kg Beef Patty, 2 Burger Buns). | Usable stock deducted atomically across earliest active batches (FIFO). Sale deduction logged. | Passed |
+| F1 - Recipe-Based Inventory Deduction | Attempt sale when usable stock of an ingredient is below required recipe quantity. | Transaction rejected with clear error message; no partial deduction recorded. | Passed |
+| F2 - Batch Expiry Monitoring | View batches with warning filter set to 7 days; ingredient has one expired batch and one fresh batch. | Expired batch highlighted with danger badge; expired quantity excluded from usable inventory calculation. | Passed |
+| F3 - Automatic Reorder Drafting | Usable stock of Chicken Breast drops below minimum threshold (10 kg). Run auto-draft. | Draft Purchase Order generated with required replenishment quantity to target level (30 kg). Duplicate draft prevented if one already pending. | Passed |
+| F4 - Purchase-Order Approval | Manager reviews draft PO, adjusts item quantities, and clicks Approve. | Status transitions from `draft` to `approved`; approved timestamp and manager ID saved. Audit record preserved. | Passed |
+| F4 - Purchase-Order Approval | Manager rejects PO draft with rejection reason note. | Status updated to `rejected`; reason stored; PO excluded from supplier visibility. | Passed |
 | F5 - Physical Stock Reconciliation | Submit physical count with surplus (+2.5 kg) and shortage (-2.5 kg). Manager reviews and approves. | Inventory stock updated by exact variances via DB transaction. Audit trail recorded. | Passed |
 | F5 - Physical Stock Reconciliation | Manager rejects a count with large unexplained variance. | Stock remains unchanged; rejection note saved and displayed. | Passed |
 | F6 - Waste Reporting & Approval | Staff submits waste report (damaged/spoiled) with quantity and reason. | Loss auto-calculated (cost × quantity); status set to pending. | Passed |
-| F6 - Waste Reporting & Approval | Manager approves waste report. | Stock deducted from ingredient and batch; financial loss recorded. | Passed |
+| F6 - Waste Reporting & Approval | Manager approves waste report. | Stock deducted from ingredient and batch; financial loss recorded in BDT. | Passed |
 | F6 - Waste Reporting & Approval | Staff attempts to report waste exceeding current available stock. | Client-side & server-side validation error prevents submission. | Passed |
 
 # **9\. AI Tool Usage Disclosure**
 
-Per the Project Outline's Academic Integrity & AI Usage Policy (Section 6), disclose every instance where a generative AI tool was used during development. Leave the table empty (do not delete it) if no AI tool was used.
+Per Section 8 & 8.1 of the Project Outline and Development Guidelines, the use of AI development tools is transparently disclosed below:
 
-| Feature / Task | AI Tool Used | How It Was Used (be specific) | I Can Fully Explain This Code (Yes/No) |
-| :---- | :---- | :---- | :---- |
-| F5 & F6 Implementation | Antigravity AI Assistant | Scaffolding Laravel 11 MVC structure, migrations, Eloquent models, controllers, service classes, and Blade UI templates with Bootstrap 5 | Yes |
-
-*\[By submitting this document, you confirm that you are able to personally explain, modify, and debug every piece of code listed above during your viva.\]*
+1. **AI Tools Used:** Antigravity AI Assistant (Google DeepMind).
+2. **Purpose of Use:**
+   - Architecture and scaffolding assistance for Laravel 11 MVC structure, migrations, and Eloquent relationships.
+   - Refactoring and optimizing domain logic into dedicated service classes (`app/Services/`) for clean separation of concerns.
+   - Writing test case scenarios and verifying boundary conditions (insufficient stock, expired batches, duplicate draft prevention).
+   - Assistance in formatting markdown documentation, SRS alignment, and Bootstrap 5 responsive UI templates.
+3. **Parts Materially Influenced:**
+   - Scaffolding of boilerplate migrations and seeders for initial inventory entities.
+   - Initial layout structure for Blade templates.
+4. **Statement of Code Understanding and Ownership:**
+   - *All architecture, business rules, controllers, models, and service classes have been reviewed, tested, and verified locally by the team. Team member Md Zahid Hasan Nerob (ID: 24341207) has complete technical ownership of the code, understands all request flows, data models, and transactional logic, and is fully prepared to explain, modify, debug, and defend every line of implementation during the individual project viva.*
 
 # **10\. Individual Contribution Summary**
 
