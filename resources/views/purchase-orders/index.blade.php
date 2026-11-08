@@ -9,15 +9,14 @@
 @section('content')
 <div class="page-header d-flex align-items-center justify-content-between">
     <div>
-        <h1><i class="fa-solid fa-cart-shopping me-2 text-info"></i>Purchase Orders (F3 &amp; F4)</h1>
+        <h1><i class="fa-solid fa-cart-shopping me-2 text-info"></i>Purchase Orders</h1>
         <p>Automated reorder drafting based on inventory thresholds and managerial approval workflow.</p>
     </div>
     <div class="d-flex gap-2">
-        <!-- Feature 3: Auto-Draft Trigger Button -->
         <form method="POST" action="{{ route('purchase-orders.auto-draft') }}" class="m-0">
             @csrf
             <button type="submit" class="btn btn-info text-dark fw-bold">
-                <i class="fa-solid fa-wand-magic-sparkles me-1"></i> Auto-Generate Reorder Draft (F3)
+                <i class="fa-solid fa-wand-magic-sparkles me-1"></i> Auto-Generate Reorder Draft
             </button>
         </form>
         <a href="{{ route('purchase-orders.create') }}" class="btn btn-outline-primary">
@@ -37,13 +36,13 @@
     <div class="col-6 col-md-3">
         <div class="card text-center p-3">
             <div style="font-size:1.6rem;font-weight:800;color:#f59e0b;">{{ $stats['draft'] }}</div>
-            <div class="text-muted small mt-1">Pending Drafts (F3)</div>
+            <div class="text-muted small mt-1">Pending Drafts</div>
         </div>
     </div>
     <div class="col-6 col-md-3">
         <div class="card text-center p-3">
             <div style="font-size:1.6rem;font-weight:800;color:#10b981;">{{ $stats['approved'] }}</div>
-            <div class="text-muted small mt-1">Approved &amp; Sent (F4)</div>
+            <div class="text-muted small mt-1">Approved &amp; Sent</div>
         </div>
     </div>
     <div class="col-6 col-md-3">
@@ -60,7 +59,7 @@
         <div class="d-flex align-items-center gap-3">
             <i class="fa-solid fa-triangle-exclamation fa-2x text-warning"></i>
             <div>
-                <strong>Reorder Threshold Alert (F3):</strong>
+                <strong>Reorder Threshold Alert:</strong>
                 <strong>{{ $lowStockIngredients->count() }} ingredient(s)</strong> are currently at or below minimum threshold:
                 <span class="text-muted small">
                     ({{ $lowStockIngredients->pluck('name')->implode(', ') }})
@@ -134,7 +133,7 @@
                         <td>
                             @if($po->is_auto_draft)
                                 <span class="badge bg-info-subtle text-info-emphasis border border-info-subtle">
-                                    <i class="fa-solid fa-robot me-1"></i>Auto Threshold Draft (F3)
+                                    <i class="fa-solid fa-robot me-1"></i>Auto Threshold Draft
                                 </span>
                             @else
                                 <span class="badge bg-light text-muted">Manual Draft</span>

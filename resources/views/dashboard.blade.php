@@ -14,19 +14,19 @@
     </div>
     <div class="d-flex flex-wrap gap-2">
         <a href="{{ route('sales.create') }}" class="btn btn-success">
-            <i class="fa-solid fa-cash-register me-1"></i> POS Sale (F1)
+            <i class="fa-solid fa-cash-register me-1"></i> POS Sale
         </a>
         <form method="POST" action="{{ route('purchase-orders.auto-draft') }}" class="m-0">
             @csrf
             <button type="submit" class="btn btn-outline-info text-dark fw-bold">
-                <i class="fa-solid fa-wand-magic-sparkles me-1"></i> Auto-Reorder (F3)
+                <i class="fa-solid fa-wand-magic-sparkles me-1"></i> Auto-Reorder Check
             </button>
         </form>
         <a href="{{ route('stock-reconciliations.create') }}" class="btn btn-outline-primary">
-            <i class="fa-solid fa-scale-balanced me-1"></i> Stock Count (F5)
+            <i class="fa-solid fa-scale-balanced me-1"></i> Stock Count
         </a>
         <a href="{{ route('waste-reports.create') }}" class="btn btn-danger">
-            <i class="fa-solid fa-trash-can me-1"></i> Waste (F6)
+            <i class="fa-solid fa-trash-can me-1"></i> Report Waste
         </a>
     </div>
 </div>
@@ -44,46 +44,46 @@
         <div class="stat-card stat-green">
             <div class="stat-icon"><i class="fa-solid fa-receipt"></i></div>
             <div class="stat-number">৳{{ number_format($stats['total_revenue'], 0) }}</div>
-            <div class="stat-label">Sales Revenue (F1)</div>
+            <div class="stat-label">Sales Revenue</div>
         </div>
     </div>
     <div class="col-sm-6 col-xl-2">
         <div class="stat-card {{ $stats['expiring_soon_batches'] > 0 ? 'stat-red' : 'stat-teal' }}">
             <div class="stat-icon"><i class="fa-solid fa-clock-rotate-left"></i></div>
             <div class="stat-number">{{ $stats['expiring_soon_batches'] }}</div>
-            <div class="stat-label">Expiring Soon (F2)</div>
+            <div class="stat-label">Expiring Soon</div>
         </div>
     </div>
     <div class="col-sm-6 col-xl-2">
         <div class="stat-card stat-orange">
             <div class="stat-icon"><i class="fa-solid fa-cart-shopping"></i></div>
             <div class="stat-number">{{ $stats['draft_purchase_orders'] }}</div>
-            <div class="stat-label">Draft POs (F3 &amp; F4)</div>
+            <div class="stat-label">Draft POs</div>
         </div>
     </div>
     <div class="col-sm-6 col-xl-2">
         <div class="stat-card stat-purple">
             <div class="stat-icon"><i class="fa-solid fa-scale-balanced"></i></div>
             <div class="stat-number">{{ $stats['pending_reconciliations'] }}</div>
-            <div class="stat-label">Pending Count (F5)</div>
+            <div class="stat-label">Pending Counts</div>
         </div>
     </div>
     <div class="col-sm-6 col-xl-2">
         <div class="stat-card stat-red">
             <div class="stat-icon"><i class="fa-solid fa-trash-can"></i></div>
             <div class="stat-number">{{ $stats['pending_waste_reports'] }}</div>
-            <div class="stat-label">Waste Reports (F6)</div>
+            <div class="stat-label">Waste Reports</div>
         </div>
     </div>
 </div>
 
-<!-- Critical Expiry Alert Banner (F2) -->
+<!-- Critical Expiry Alert Banner -->
 @if($expiringSoonBatches->isNotEmpty())
     <div class="alert alert-danger d-flex align-items-center justify-content-between mb-4">
         <div class="d-flex align-items-center gap-3">
             <i class="fa-solid fa-triangle-exclamation fa-2x text-danger"></i>
             <div>
-                <strong>Batch Expiry Warning (F2):</strong>
+                <strong>Batch Expiry Warning:</strong>
                 <strong>{{ $expiringSoonBatches->count() }} ingredient batch(es)</strong> are expiring within the next 7 days!
                 <div class="small text-muted">Examine batches and prioritize usage or record waste to avoid contamination.</div>
             </div>
@@ -96,11 +96,11 @@
 
 <!-- Row: Recent Sales & Low Stock Alerts -->
 <div class="row g-4 mb-4">
-    <!-- Recent POS Sales (F1) -->
+    <!-- Recent POS Sales -->
     <div class="col-lg-7">
         <div class="card h-100">
             <div class="card-header d-flex align-items-center justify-content-between">
-                <span><i class="fa-solid fa-receipt me-2 text-success"></i>Recent Kitchen Sales &amp; Recipe Deductions (F1)</span>
+                <span><i class="fa-solid fa-receipt me-2 text-success"></i>Recent Kitchen Sales &amp; Recipe Deductions</span>
                 <a href="{{ route('sales.index') }}" class="btn btn-sm btn-outline-success">View All Sales</a>
             </div>
             <div class="card-body p-0">
@@ -196,11 +196,11 @@
 
 <!-- Row: Purchase Orders, Reconciliations & Waste -->
 <div class="row g-4">
-    <!-- Recent POs (F3 & F4) -->
+    <!-- Recent POs -->
     <div class="col-lg-4">
         <div class="card h-100">
             <div class="card-header d-flex align-items-center justify-content-between">
-                <span><i class="fa-solid fa-cart-shopping me-2 text-info"></i>Purchase Orders (F3 &amp; F4)</span>
+                <span><i class="fa-solid fa-cart-shopping me-2 text-info"></i>Purchase Orders</span>
                 <a href="{{ route('purchase-orders.index') }}" class="btn btn-sm btn-outline-info">View All</a>
             </div>
             <div class="card-body p-0">
@@ -236,11 +236,11 @@
         </div>
     </div>
 
-    <!-- Recent Reconciliations (F5) -->
+    <!-- Recent Reconciliations -->
     <div class="col-lg-4">
         <div class="card h-100">
             <div class="card-header d-flex align-items-center justify-content-between">
-                <span><i class="fa-solid fa-scale-balanced me-2 text-primary"></i>Stock Counts (F5)</span>
+                <span><i class="fa-solid fa-scale-balanced me-2 text-primary"></i>Stock Counts</span>
                 <a href="{{ route('stock-reconciliations.index') }}" class="btn btn-sm btn-outline-primary">View All</a>
             </div>
             <div class="card-body p-0">
@@ -272,11 +272,11 @@
         </div>
     </div>
 
-    <!-- Recent Waste Reports (F6) -->
+    <!-- Recent Waste Reports -->
     <div class="col-lg-4">
         <div class="card h-100">
             <div class="card-header d-flex align-items-center justify-content-between">
-                <span><i class="fa-solid fa-trash-can me-2 text-danger"></i>Waste Reports (F6)</span>
+                <span><i class="fa-solid fa-trash-can me-2 text-danger"></i>Waste Reports</span>
                 <a href="{{ route('waste-reports.index') }}" class="btn btn-sm btn-outline-danger">View All</a>
             </div>
             <div class="card-body p-0">

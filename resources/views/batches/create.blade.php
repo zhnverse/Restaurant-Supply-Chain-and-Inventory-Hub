@@ -78,12 +78,12 @@
     <div class="col-lg-4">
         <div class="card bg-light border-0">
             <div class="card-body">
-                <h6 class="fw-bold mb-2"><i class="fa-solid fa-circle-info text-info me-1"></i>Feature 2: Expiry Policy</h6>
+                <h6 class="fw-bold mb-2"><i class="fa-solid fa-circle-info text-info me-1"></i>Batch Expiry Policy</h6>
                 <p class="small text-muted mb-2">When a batch expires past its scheduled expiry date:</p>
                 <ul class="small text-muted ps-3 mb-3">
                     <li>It triggers an automatic critical alert.</li>
                     <li>Its remaining stock is excluded from the dish preparation checks.</li>
-                    <li>Can be easily routed into Feature 6 (Waste Reporting &amp; Loss Recording).</li>
+                    <li>Can be easily routed into Waste Reporting &amp; Loss Recording.</li>
                 </ul>
             </div>
         </div>

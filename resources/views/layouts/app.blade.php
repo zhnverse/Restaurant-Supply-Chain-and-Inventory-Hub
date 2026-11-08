@@ -341,7 +341,7 @@
             <i class="fa-solid fa-gauge nav-icon"></i> Dashboard
         </a>
 
-        <div class="nav-section-label">Kitchen &amp; Sales (F1)</div>
+        <div class="nav-section-label">Kitchen &amp; Sales</div>
         <a href="{{ route('sales.create') }}" class="sidebar-link {{ request()->routeIs('sales.create') ? 'active' : '' }}">
             <i class="fa-solid fa-cash-register nav-icon text-success"></i> Record Dish Sale (POS)
         </a>
@@ -352,7 +352,7 @@
             <i class="fa-solid fa-bowl-food nav-icon"></i> Dishes &amp; Recipes
         </a>
 
-        <div class="nav-section-label">Inventory &amp; Batches (F2)</div>
+        <div class="nav-section-label">Inventory &amp; Batches</div>
         <a href="{{ route('batches.index') }}" class="sidebar-link {{ request()->routeIs('batches.*') ? 'active' : '' }}">
             <i class="fa-solid fa-clock-rotate-left nav-icon text-warning"></i> Expiry Monitoring
             @if($expiringBatches > 0)
@@ -360,7 +360,7 @@
             @endif
         </a>
 
-        <div class="nav-section-label">Procurement &amp; Orders (F3 &amp; F4)</div>
+        <div class="nav-section-label">Procurement &amp; Orders</div>
         <a href="{{ route('purchase-orders.index') }}" class="sidebar-link {{ request()->routeIs('purchase-orders.*') ? 'active' : '' }}">
             <i class="fa-solid fa-cart-shopping nav-icon text-info"></i> Purchase Orders
             @if($draftPOs > 0)
@@ -368,7 +368,7 @@
             @endif
         </a>
 
-        <div class="nav-section-label">Stock Control (F5 &amp; F6)</div>
+        <div class="nav-section-label">Stock Control</div>
         <a href="{{ route('stock-reconciliations.index') }}" class="sidebar-link {{ request()->routeIs('stock-reconciliations.*') ? 'active' : '' }}">
             <i class="fa-solid fa-scale-balanced nav-icon text-primary"></i> Stock Reconciliation
             @if($pendingRecon > 0)

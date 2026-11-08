@@ -21,7 +21,7 @@
             <span class="badge-status badge-{{ $po->status }} fs-6">{{ ucfirst($po->status) }}</span>
             @if($po->is_auto_draft)
                 <span class="badge bg-info-subtle text-info-emphasis border border-info-subtle small">
-                    <i class="fa-solid fa-wand-magic-sparkles me-1"></i>Auto-Generated Draft (F3)
+                    <i class="fa-solid fa-wand-magic-sparkles me-1"></i>Auto-Generated Draft
                 </span>
             @endif
         </div>
@@ -108,7 +108,7 @@
                                 <i class="fa-solid fa-xmark me-1"></i> Reject Draft
                             </button>
                             <button type="submit" class="btn btn-success px-4">
-                                <i class="fa-solid fa-check me-1"></i> Approve Purchase Order (F4)
+                                <i class="fa-solid fa-check me-1"></i> Approve Purchase Order
                             </button>
                         </div>
                     </div>
@@ -182,9 +182,9 @@
 
         <div class="card bg-light border-0">
             <div class="card-body">
-                <h6 class="fw-bold mb-2"><i class="fa-solid fa-circle-check text-success me-1"></i>SRS Feature Rules</h6>
-                <p class="small text-muted mb-1"><strong>F3 (Auto Reorder):</strong> Low-stock items automatically calculate replenishment up to target stock level.</p>
-                <p class="small text-muted mb-0"><strong>F4 (Approval):</strong> Only approved orders are authorized for supplier dispatch. Decision and reasons are permanently logged.</p>
+                <h6 class="fw-bold mb-2"><i class="fa-solid fa-circle-check text-success me-1"></i>Inventory Policy Rules</h6>
+                <p class="small text-muted mb-1"><strong>Auto Reorder:</strong> Low-stock items automatically calculate replenishment up to target stock level.</p>
+                <p class="small text-muted mb-0"><strong>Approval:</strong> Only approved orders are authorized for supplier dispatch. Decision and reasons are permanently logged.</p>
             </div>
         </div>
     </div>

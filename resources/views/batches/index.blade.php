@@ -9,7 +9,7 @@
 @section('content')
 <div class="page-header d-flex align-items-center justify-content-between">
     <div>
-        <h1><i class="fa-solid fa-clock-rotate-left me-2 text-warning"></i>Batch Expiry Monitoring (F2)</h1>
+        <h1><i class="fa-solid fa-clock-rotate-left me-2 text-warning"></i>Batch Expiry Monitoring</h1>
         <p>Monitor ingredient batch shelf life with configurable warning windows. Expired batches are automatically excluded from usable inventory.</p>
     </div>
     <div class="d-flex gap-2">
@@ -57,7 +57,7 @@
         <div class="d-flex align-items-center gap-3">
             <i class="fa-solid fa-shield-halved fa-2x text-warning"></i>
             <div>
-                <strong>SRS Rule Enforced (F2):</strong>
+                <strong>Safety Rule Enforced:</strong>
                 <strong>{{ number_format($totalExpiredQuantity, 2) }} units</strong> of expired stock are quarantined and excluded from usable inventory to protect food safety.
             </div>
         </div>
