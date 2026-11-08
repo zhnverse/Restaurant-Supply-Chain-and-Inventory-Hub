@@ -8,7 +8,7 @@
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
     <!-- Bootstrap 5 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -21,10 +21,9 @@
             --sidebar-bg: #0f172a;
             --sidebar-hover: #1e293b;
             --sidebar-active: #3b82f6;
-            --sidebar-width: 260px;
+            --sidebar-width: 270px;
             --topbar-height: 64px;
             --accent: #3b82f6;
-            --accent-hover: #2563eb;
         }
 
         * { box-sizing: border-box; }
@@ -34,6 +33,7 @@
             background: #f1f5f9;
             margin: 0;
             overflow-x: hidden;
+            color: #1e293b;
         }
 
         /* ───── SIDEBAR ───── */
@@ -50,12 +50,12 @@
         }
 
         .sidebar-brand {
-            padding: 1.5rem 1.25rem 1rem;
+            padding: 1.25rem 1.25rem 1rem;
             border-bottom: 1px solid rgba(255,255,255,0.08);
         }
 
         .sidebar-brand .brand-icon {
-            width: 42px; height: 42px;
+            width: 40px; height: 40px;
             background: linear-gradient(135deg, #3b82f6, #8b5cf6);
             border-radius: 10px;
             display: flex; align-items: center; justify-content: center;
@@ -64,10 +64,10 @@
 
         .sidebar-brand h6 {
             color: #fff;
-            font-size: 0.875rem;
+            font-size: 0.9rem;
             font-weight: 700;
             margin: 0;
-            line-height: 1.3;
+            line-height: 1.2;
         }
 
         .sidebar-brand small {
@@ -77,7 +77,7 @@
 
         .sidebar-nav {
             flex: 1;
-            padding: 1rem 0;
+            padding: 0.75rem 0;
             overflow-y: auto;
         }
 
@@ -87,19 +87,18 @@
             color: #475569;
             text-transform: uppercase;
             letter-spacing: 0.08em;
-            padding: 0.75rem 1.25rem 0.4rem;
+            padding: 0.85rem 1.25rem 0.35rem;
         }
 
         .sidebar-link {
             display: flex;
             align-items: center;
             gap: 0.75rem;
-            padding: 0.65rem 1.25rem;
+            padding: 0.6rem 1.25rem;
             color: #94a3b8;
             text-decoration: none;
-            font-size: 0.875rem;
+            font-size: 0.85rem;
             font-weight: 500;
-            border-radius: 0;
             transition: all 0.15s ease;
             border-left: 3px solid transparent;
         }
@@ -120,7 +119,7 @@
             width: 20px;
             text-align: center;
             font-size: 0.95rem;
-            opacity: 0.8;
+            opacity: 0.85;
         }
 
         .sidebar-link .badge-pill {
@@ -133,6 +132,7 @@
         .sidebar-footer {
             padding: 1rem 1.25rem;
             border-top: 1px solid rgba(255,255,255,0.08);
+            background: rgba(0,0,0,0.2);
         }
 
         .sidebar-footer .user-avatar {
@@ -159,39 +159,23 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 0 2rem;
+            padding: 0 1.75rem;
             position: sticky;
             top: 0;
             z-index: 999;
         }
 
-        .topbar .breadcrumb {
-            margin: 0;
-            font-size: 0.85rem;
-        }
-
-        .topbar .breadcrumb-item + .breadcrumb-item::before {
-            content: '/';
-            color: #94a3b8;
-        }
-
-        .topbar-actions .btn {
-            font-size: 0.82rem;
-            padding: 0.4rem 0.9rem;
-        }
-
-        /* ───── PAGE CONTENT ───── */
         .page-content {
             flex: 1;
-            padding: 2rem;
+            padding: 1.75rem;
         }
 
         .page-header {
-            margin-bottom: 1.75rem;
+            margin-bottom: 1.5rem;
         }
 
         .page-header h1 {
-            font-size: 1.6rem;
+            font-size: 1.55rem;
             font-weight: 700;
             color: #0f172a;
             margin: 0;
@@ -200,32 +184,31 @@
         .page-header p {
             color: #64748b;
             margin: 0.25rem 0 0;
-            font-size: 0.9rem;
+            font-size: 0.875rem;
         }
 
-        /* ───── CARDS ───── */
+        /* ───── CARDS & BADGES ───── */
         .card {
             border: none;
             border-radius: 12px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.07), 0 4px 16px rgba(0,0,0,0.04);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.07), 0 4px 16px rgba(0,0,0,0.03);
             background: #fff;
         }
 
         .card-header {
             background: transparent;
             border-bottom: 1px solid #f1f5f9;
-            padding: 1.1rem 1.5rem;
+            padding: 1rem 1.25rem;
             font-weight: 600;
-            font-size: 0.95rem;
+            font-size: 0.92rem;
             color: #1e293b;
         }
 
-        .card-body { padding: 1.5rem; }
+        .card-body { padding: 1.25rem; }
 
-        /* ───── STAT CARDS ───── */
         .stat-card {
             border-radius: 12px;
-            padding: 1.5rem;
+            padding: 1.25rem;
             border: none;
             position: relative;
             overflow: hidden;
@@ -235,30 +218,30 @@
             content: '';
             position: absolute;
             top: -20px; right: -20px;
-            width: 100px; height: 100px;
+            width: 90px; height: 90px;
             border-radius: 50%;
             background: rgba(255,255,255,0.1);
         }
 
         .stat-card .stat-icon {
-            width: 48px; height: 48px;
+            width: 42px; height: 42px;
             border-radius: 10px;
             background: rgba(255,255,255,0.2);
             display: flex; align-items: center; justify-content: center;
-            font-size: 1.3rem;
-            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            margin-bottom: 0.75rem;
         }
 
         .stat-card .stat-number {
-            font-size: 2rem;
+            font-size: 1.85rem;
             font-weight: 800;
             color: #fff;
             line-height: 1;
         }
 
         .stat-card .stat-label {
-            font-size: 0.82rem;
-            color: rgba(255,255,255,0.8);
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.85);
             margin-top: 0.3rem;
             font-weight: 500;
         }
@@ -268,8 +251,8 @@
         .stat-orange { background: linear-gradient(135deg, #f59e0b, #d97706); }
         .stat-red    { background: linear-gradient(135deg, #ef4444, #dc2626); }
         .stat-purple { background: linear-gradient(135deg, #8b5cf6, #7c3aed); }
+        .stat-teal   { background: linear-gradient(135deg, #06b6d4, #0891b2); }
 
-        /* ───── BADGES ───── */
         .badge-status {
             font-size: 0.72rem;
             font-weight: 600;
@@ -279,29 +262,13 @@
             text-transform: uppercase;
         }
 
-        .badge-pending  { background: #fef3c7; color: #92400e; }
+        .badge-pending, .badge-draft { background: #fef3c7; color: #92400e; }
         .badge-approved { background: #d1fae5; color: #065f46; }
         .badge-rejected { background: #fee2e2; color: #991b1b; }
 
-        /* ───── TABLES ───── */
-        .table { font-size: 0.875rem; }
-        .table thead th {
-            font-size: 0.72rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.06em;
-            color: #64748b;
-            background: #f8fafc;
-            border-top: none;
-            padding: 0.75rem 1rem;
-        }
-        .table tbody td { padding: 0.9rem 1rem; vertical-align: middle; }
-        .table tbody tr:hover { background: #f8fafc; }
-
-        /* ───── FILTER TABS ───── */
         .filter-tabs { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.25rem; }
         .filter-tab {
-            padding: 0.5rem 1.1rem;
+            padding: 0.45rem 1rem;
             border-radius: 8px;
             font-size: 0.82rem;
             font-weight: 600;
@@ -314,110 +281,103 @@
         .filter-tab:hover { background: #f1f5f9; color: #334155; text-decoration: none; }
         .filter-tab.active { background: #3b82f6; color: #fff; border-color: #3b82f6; }
 
-        /* ───── FORMS ───── */
-        .form-label { font-size: 0.85rem; font-weight: 600; color: #374151; margin-bottom: 0.4rem; }
-        .form-control, .form-select {
-            font-size: 0.875rem;
-            border-radius: 8px;
-            border-color: #d1d5db;
-            padding: 0.55rem 0.85rem;
-        }
-        .form-control:focus, .form-select:focus {
-            border-color: #3b82f6;
-            box-shadow: 0 0 0 3px rgba(59,130,246,0.1);
-        }
-
-        /* ───── BUTTONS ───── */
-        .btn { border-radius: 8px; font-size: 0.875rem; font-weight: 600; }
-        .btn-primary { background: #3b82f6; border-color: #3b82f6; }
-        .btn-primary:hover { background: #2563eb; border-color: #2563eb; }
-        .btn-success { background: #10b981; border-color: #10b981; }
-        .btn-success:hover { background: #059669; border-color: #059669; }
-
-        /* ───── ALERTS ───── */
-        .alert { border-radius: 10px; border: none; font-size: 0.875rem; }
-        .alert-success { background: #d1fae5; color: #065f46; }
-        .alert-warning { background: #fef3c7; color: #92400e; }
-        .alert-danger  { background: #fee2e2; color: #991b1b; }
-        .alert-info    { background: #dbeafe; color: #1e40af; }
-
-        /* ───── DIFF INDICATORS (F5) ───── */
         .diff-surplus  { color: #059669; font-weight: 700; }
         .diff-shortage { color: #dc2626; font-weight: 700; }
         .diff-balanced { color: #94a3b8; }
 
-        /* ───── TIMELINE ───── */
-        .timeline { position: relative; padding-left: 2rem; }
+        .timeline { position: relative; padding-left: 1.75rem; }
         .timeline::before {
             content: '';
             position: absolute;
-            left: 0.65rem;
-            top: 0; bottom: 0;
+            left: 0.55rem; top: 0; bottom: 0;
             width: 2px;
             background: #e2e8f0;
         }
-        .timeline-item { position: relative; padding-bottom: 1.5rem; }
+        .timeline-item { position: relative; padding-bottom: 1.25rem; }
         .timeline-dot {
             position: absolute;
-            left: -1.65rem;
-            top: 0.2rem;
-            width: 14px; height: 14px;
+            left: -1.5rem; top: 0.2rem;
+            width: 13px; height: 13px;
             border-radius: 50%;
             border: 2px solid #fff;
-            box-shadow: 0 0 0 2px #e2e8f0;
         }
-        .timeline-dot.dot-blue   { background: #3b82f6; box-shadow: 0 0 0 2px #bfdbfe; }
-        .timeline-dot.dot-green  { background: #10b981; box-shadow: 0 0 0 2px #a7f3d0; }
-        .timeline-dot.dot-red    { background: #ef4444; box-shadow: 0 0 0 2px #fecaca; }
-        .timeline-dot.dot-gray   { background: #94a3b8; box-shadow: 0 0 0 2px #e2e8f0; }
+        .dot-blue   { background: #3b82f6; box-shadow: 0 0 0 2px #bfdbfe; }
+        .dot-green  { background: #10b981; box-shadow: 0 0 0 2px #a7f3d0; }
+        .dot-red    { background: #ef4444; box-shadow: 0 0 0 2px #fecaca; }
+        .dot-gray   { background: #94a3b8; box-shadow: 0 0 0 2px #e2e8f0; }
 
-        /* ───── RESPONSIVE ───── */
         @media (max-width: 768px) {
             .sidebar { transform: translateX(-100%); }
             .sidebar.open { transform: translateX(0); }
             .main-wrapper { margin-left: 0; }
         }
-
-        /* ───── TOAST ───── */
-        .toast-container { z-index: 9999; }
     </style>
     @stack('styles')
 </head>
 <body>
+
+@php
+    $currentUser = auth()->user() ?? \App\Models\User::first();
+    $pendingRecon = \App\Models\StockReconciliation::where('status','pending')->count();
+    $pendingWaste = \App\Models\WasteReport::where('status','pending')->count();
+    $draftPOs     = \App\Models\PurchaseOrder::where('status','draft')->count();
+    $expiringBatches = \App\Models\IngredientBatch::whereNotNull('expiry_date')
+        ->where('expiry_date', '>=', now()->toDateString())
+        ->where('expiry_date', '<=', now()->addDays(7)->toDateString())
+        ->count();
+@endphp
 
 <!-- Sidebar -->
 <nav class="sidebar" id="sidebar">
     <div class="sidebar-brand">
         <div class="brand-icon"><i class="fa-solid fa-utensils"></i></div>
         <h6>Restaurant Supply Hub</h6>
-        <small>Inventory & Supply Chain</small>
+        <small>Inventory &amp; Supply Chain Hub</small>
     </div>
 
     <div class="sidebar-nav">
         <div class="nav-section-label">Overview</div>
-
-        <a href="{{ route('dashboard') }}"
-           class="sidebar-link {{ request()->routeIs('dashboard') ? 'active' : '' }}">
+        <a href="{{ route('dashboard') }}" class="sidebar-link {{ request()->routeIs('dashboard') ? 'active' : '' }}">
             <i class="fa-solid fa-gauge nav-icon"></i> Dashboard
         </a>
 
-        <div class="nav-section-label">Inventory Control</div>
+        <div class="nav-section-label">Kitchen &amp; Sales (F1)</div>
+        <a href="{{ route('sales.create') }}" class="sidebar-link {{ request()->routeIs('sales.create') ? 'active' : '' }}">
+            <i class="fa-solid fa-cash-register nav-icon text-success"></i> Record Dish Sale (POS)
+        </a>
+        <a href="{{ route('sales.index') }}" class="sidebar-link {{ request()->routeIs('sales.index') ? 'active' : '' }}">
+            <i class="fa-solid fa-receipt nav-icon"></i> Sales Deduction History
+        </a>
+        <a href="{{ route('dishes.index') }}" class="sidebar-link {{ request()->routeIs('dishes.*') ? 'active' : '' }}">
+            <i class="fa-solid fa-bowl-food nav-icon"></i> Dishes &amp; Recipes
+        </a>
 
-        <a href="{{ route('stock-reconciliations.index') }}"
-           class="sidebar-link {{ request()->routeIs('stock-reconciliations.*') ? 'active' : '' }}">
-            <i class="fa-solid fa-scale-balanced nav-icon"></i>
-            Stock Reconciliation
-            @php $pendingRecon = \App\Models\StockReconciliation::where('status','pending')->count(); @endphp
+        <div class="nav-section-label">Inventory &amp; Batches (F2)</div>
+        <a href="{{ route('batches.index') }}" class="sidebar-link {{ request()->routeIs('batches.*') ? 'active' : '' }}">
+            <i class="fa-solid fa-clock-rotate-left nav-icon text-warning"></i> Expiry Monitoring
+            @if($expiringBatches > 0)
+                <span class="badge-pill bg-warning text-dark badge-status">{{ $expiringBatches }}</span>
+            @endif
+        </a>
+
+        <div class="nav-section-label">Procurement &amp; Orders (F3 &amp; F4)</div>
+        <a href="{{ route('purchase-orders.index') }}" class="sidebar-link {{ request()->routeIs('purchase-orders.*') ? 'active' : '' }}">
+            <i class="fa-solid fa-cart-shopping nav-icon text-info"></i> Purchase Orders
+            @if($draftPOs > 0)
+                <span class="badge-pill bg-info text-dark badge-status">{{ $draftPOs }} draft</span>
+            @endif
+        </a>
+
+        <div class="nav-section-label">Stock Control (F5 &amp; F6)</div>
+        <a href="{{ route('stock-reconciliations.index') }}" class="sidebar-link {{ request()->routeIs('stock-reconciliations.*') ? 'active' : '' }}">
+            <i class="fa-solid fa-scale-balanced nav-icon text-primary"></i> Stock Reconciliation
             @if($pendingRecon > 0)
                 <span class="badge-pill bg-warning text-dark badge-status">{{ $pendingRecon }}</span>
             @endif
         </a>
 
-        <a href="{{ route('waste-reports.index') }}"
-           class="sidebar-link {{ request()->routeIs('waste-reports.*') ? 'active' : '' }}">
-            <i class="fa-solid fa-trash-can nav-icon"></i>
-            Waste Reports
-            @php $pendingWaste = \App\Models\WasteReport::where('status','pending')->count(); @endphp
+        <a href="{{ route('waste-reports.index') }}" class="sidebar-link {{ request()->routeIs('waste-reports.*') ? 'active' : '' }}">
+            <i class="fa-solid fa-trash-can nav-icon text-danger"></i> Waste Reports
             @if($pendingWaste > 0)
                 <span class="badge-pill bg-danger text-white badge-status">{{ $pendingWaste }}</span>
             @endif
@@ -425,12 +385,30 @@
     </div>
 
     <div class="sidebar-footer">
-        <div class="d-flex align-items-center gap-2">
-            <div class="user-avatar">M</div>
-            <div>
-                <div style="color:#e2e8f0; font-size:0.8rem; font-weight:600;">Manager</div>
-                <div style="color:#64748b; font-size:0.72rem;">Restaurant #1</div>
+        <div class="d-flex align-items-center justify-content-between">
+            <div class="d-flex align-items-center gap-2">
+                <div class="user-avatar">{{ strtoupper(substr($currentUser->name ?? 'U', 0, 1)) }}</div>
+                <div>
+                    <div style="color:#e2e8f0; font-size:0.8rem; font-weight:600;">{{ $currentUser->name ?? 'User' }}</div>
+                    <div style="color:#94a3b8; font-size:0.7rem;" class="text-capitalize">
+                        <span class="badge bg-{{ ($currentUser->role ?? 'staff') === 'manager' ? 'primary' : 'secondary' }} py-0">
+                            {{ $currentUser->role ?? 'staff' }}
+                        </span>
+                    </div>
+                </div>
             </div>
+            @if(auth()->check())
+                <form method="POST" action="{{ route('logout') }}" class="m-0">
+                    @csrf
+                    <button type="submit" class="btn btn-sm btn-outline-light py-1 px-2" title="Sign Out">
+                        <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                    </button>
+                </form>
+            @else
+                <a href="{{ route('login') }}" class="btn btn-sm btn-outline-light py-1 px-2" title="Sign In">
+                    <i class="fa-solid fa-right-to-bracket"></i>
+                </a>
+            @endif
         </div>
     </div>
 </nav>
@@ -445,46 +423,84 @@
                 <i class="fa-solid fa-bars"></i>
             </button>
             <nav aria-label="breadcrumb">
-                <ol class="breadcrumb mb-0">
+                <ol class="breadcrumb mb-0 small">
                     <li class="breadcrumb-item"><a href="{{ route('dashboard') }}" class="text-muted text-decoration-none">Home</a></li>
                     @yield('breadcrumb')
                 </ol>
             </nav>
         </div>
         <div class="topbar-actions d-flex align-items-center gap-2">
-            <a href="{{ route('stock-reconciliations.create') }}" class="btn btn-sm btn-outline-primary">
-                <i class="fa-solid fa-plus me-1"></i> New Count
+            <!-- Quick POS sale button -->
+            <a href="{{ route('sales.create') }}" class="btn btn-sm btn-success">
+                <i class="fa-solid fa-cash-register me-1"></i> POS Sale
             </a>
-            <a href="{{ route('waste-reports.create') }}" class="btn btn-sm btn-primary">
-                <i class="fa-solid fa-triangle-exclamation me-1"></i> Report Waste
+
+            <!-- Quick Auto-reorder check -->
+            <form method="POST" action="{{ route('purchase-orders.auto-draft') }}" class="d-inline m-0">
+                @csrf
+                <button type="submit" class="btn btn-sm btn-outline-info" title="Run automatic inventory threshold check">
+                    <i class="fa-solid fa-wand-magic-sparkles me-1"></i> Auto-Reorder Check
+                </button>
+            </form>
+
+            <a href="{{ route('waste-reports.create') }}" class="btn btn-sm btn-danger">
+                <i class="fa-solid fa-trash-can me-1"></i> Waste
             </a>
+
+            @if(auth()->check())
+                <div class="dropdown ms-2">
+                    <button class="btn btn-sm btn-light dropdown-toggle" data-bs-toggle="dropdown">
+                        <i class="fa-solid fa-user-circle me-1"></i> Switch Role
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end shadow-sm border-0">
+                        <li><a class="dropdown-item small" href="{{ route('login.quick', 'manager') }}"><i class="fa-solid fa-user-tie me-2 text-primary"></i>Manager (Sarah Ahmed)</a></li>
+                        <li><a class="dropdown-item small" href="{{ route('login.quick', 'staff') }}"><i class="fa-solid fa-user-pen me-2 text-secondary"></i>Staff (Rahim Mia)</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li>
+                            <form method="POST" action="{{ route('logout') }}">
+                                @csrf
+                                <button type="submit" class="dropdown-item small text-danger"><i class="fa-solid fa-right-from-bracket me-2"></i>Sign Out</button>
+                            </form>
+                        </li>
+                    </ul>
+                </div>
+            @else
+                <a href="{{ route('login') }}" class="btn btn-sm btn-outline-primary ms-2">Sign In</a>
+            @endif
         </div>
     </header>
 
     <!-- Page Content -->
     <main class="page-content">
 
-        <!-- Alerts -->
         @if(session('success'))
             <div class="alert alert-success alert-dismissible fade show d-flex align-items-center gap-2 mb-4" role="alert">
                 <i class="fa-solid fa-circle-check"></i>
-                {{ session('success') }}
-                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                <div>{{ session('success') }}</div>
+                <button type="button" class="btn-close ms-auto" data-bs-dismiss="alert"></button>
             </div>
         @endif
 
         @if(session('warning'))
             <div class="alert alert-warning alert-dismissible fade show d-flex align-items-center gap-2 mb-4" role="alert">
                 <i class="fa-solid fa-triangle-exclamation"></i>
-                {{ session('warning') }}
-                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                <div>{{ session('warning') }}</div>
+                <button type="button" class="btn-close ms-auto" data-bs-dismiss="alert"></button>
+            </div>
+        @endif
+
+        @if(session('info'))
+            <div class="alert alert-info alert-dismissible fade show d-flex align-items-center gap-2 mb-4" role="alert">
+                <i class="fa-solid fa-circle-info"></i>
+                <div>{{ session('info') }}</div>
+                <button type="button" class="btn-close ms-auto" data-bs-dismiss="alert"></button>
             </div>
         @endif
 
         @if($errors->any())
             <div class="alert alert-danger alert-dismissible fade show mb-4" role="alert">
                 <i class="fa-solid fa-circle-xmark me-1"></i>
-                <strong>Please fix the following:</strong>
+                <strong>Action Alert:</strong>
                 <ul class="mb-0 mt-1">
                     @foreach($errors->all() as $error)
                         <li>{{ $error }}</li>
@@ -498,15 +514,12 @@
     </main>
 </div>
 
-<!-- Bootstrap 5 JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-
 <script>
 function toggleSidebar() {
     document.getElementById('sidebar').classList.toggle('open');
 }
 </script>
-
 @stack('scripts')
 </body>
 </html>

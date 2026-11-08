@@ -53,7 +53,7 @@ class StockReconciliationController extends Controller
 
         $reconciliation = $this->service->createReconciliation(
             ['notes' => $request->notes, 'items' => $items],
-            auth()->id() ?? 1
+            Auth::id() ?? (\App\Models\User::first()->id ?? 1)
         );
 
         return redirect()
@@ -73,7 +73,7 @@ class StockReconciliationController extends Controller
         $reconciliation = StockReconciliation::findOrFail($id);
 
         try {
-            $this->service->approve($reconciliation, auth()->id() ?? 1, $request->manager_notes);
+            $this->service->approve($reconciliation, Auth::id() ?? (\App\Models\User::first()->id ?? 1), $request->manager_notes);
             return redirect()
                 ->route('stock-reconciliations.show', $reconciliation)
                 ->with('success', 'Reconciliation approved. Stock levels have been updated.');
@@ -88,7 +88,7 @@ class StockReconciliationController extends Controller
         $reconciliation = StockReconciliation::findOrFail($id);
 
         try {
-            $this->service->reject($reconciliation, auth()->id() ?? 1, $request->manager_notes);
+            $this->service->reject($reconciliation, Auth::id() ?? (\App\Models\User::first()->id ?? 1), $request->manager_notes);
             return redirect()
                 ->route('stock-reconciliations.show', $reconciliation)
                 ->with('warning', 'Reconciliation rejected. Stock levels unchanged.');

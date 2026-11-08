@@ -56,7 +56,7 @@ class WasteReportController extends Controller
                 ->withInput();
         }
 
-        $report = $this->service->createReport($request->all(), auth()->id() ?? 1);
+        $report = $this->service->createReport($request->all(), Auth::id() ?? (\App\Models\User::first()->id ?? 1));
 
         return redirect()
             ->route('waste-reports.show', $report)
@@ -75,7 +75,7 @@ class WasteReportController extends Controller
         $report = WasteReport::findOrFail($id);
 
         try {
-            $this->service->approve($report, auth()->id() ?? 1, $request->manager_notes);
+            $this->service->approve($report, Auth::id() ?? (\App\Models\User::first()->id ?? 1), $request->manager_notes);
             return redirect()
                 ->route('waste-reports.show', $report)
                 ->with('success', "Waste report approved. {$report->quantity} {$report->ingredient->unit} deducted from stock.");
@@ -90,7 +90,7 @@ class WasteReportController extends Controller
         $report = WasteReport::findOrFail($id);
 
         try {
-            $this->service->reject($report, auth()->id() ?? 1, $request->manager_notes);
+            $this->service->reject($report, Auth::id() ?? (\App\Models\User::first()->id ?? 1), $request->manager_notes);
             return redirect()
                 ->route('waste-reports.show', $report)
                 ->with('warning', 'Waste report rejected. Stock levels unchanged.');

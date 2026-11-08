@@ -2,149 +2,101 @@
 
 **CSE470 — Software Engineering | Section 9 | BRAC University**
 
-A web-based restaurant inventory management system built with **Laravel 11**, **Bootstrap 5**, and **SQLite**. This project implements Features F5 and F6 as part of the Restaurant Supply Chain and Inventory Hub SRS.
+A comprehensive restaurant inventory management & procurement system built with **Laravel 11**, **Bootstrap 5**, and **SQLite**.
+
+👉 **Live GitHub Repository:** [https://github.com/zhnverse/Restaurant-Supply-Chain-and-Inventory-Hub](https://github.com/zhnverse/Restaurant-Supply-Chain-and-Inventory-Hub)
 
 ---
 
-## 📋 Implemented Features
+## 📋 Implemented Features (6 Features + Auth System)
+
+### 🔐 Authentication System (Login & Logout)
+- Full authentication with email & password, session regeneration, and remember-me.
+- Role-based views & permissions (**Manager** vs **Staff**).
+- One-click quick login buttons for instant role testing during demonstrations.
+
+### F1 — Recipe-Based Inventory Deduction
+- Define dish recipes specifying exact ingredient quantities required per serving.
+- Kitchen POS sale recording verifies usable stock in real-time.
+- Automatically deducts ingredient stock atomically across batches (FIFO).
+- **Strict Stock Guard:** Immediately rejects the sale if usable inventory is insufficient.
+
+### F2 — Batch Expiry Monitoring
+- Track individual ingredient batches with expiry dates, quantities, and cost.
+- Configurable warning window filter (3, 7, 14, 30 days) with critical countdown alerts.
+- **SRS Food Safety Rule:** Expired stock is automatically quarantined and excluded from usable inventory.
+
+### F3 — Automatic Reorder Drafting
+- Automatically evaluates usable stock against minimum thresholds.
+- Computes replenishment quantity needed to reach configured `target_stock`.
+- Generates draft purchase order with line-item cost estimations.
+- **Duplicate Prevention:** Prevents creating duplicate drafts for ingredients already in a pending order.
+
+### F4 — Purchase-Order Approval
+- Managers review reorder drafts with complete stock context (current stock, threshold, target).
+- Managers can adjust order quantities before authorizing.
+- Modal approval and rejection workflows with mandatory manager decision notes.
+- Only approved orders are authorized for supplier dispatch.
 
 ### F5 — Physical Stock Reconciliation
-> Staff submit physical stock counts. The system calculates differences from recorded stock, and managers approve or reject the proposed adjustments. Approved adjustments update actual stock.
-
-**How it works:**
-1. Inventory staff selects ingredients and enters physically counted quantities
-2. The system auto-calculates variance (surplus 🟢 or shortage 🔴) in real-time
-3. Manager reviews the reconciliation and either **Approves** (stock updated via DB transaction) or **Rejects** (stock unchanged)
-4. Full audit trail with timestamps and manager notes
+- Staff submit physical stock count audits with selective ingredient row toggling.
+- Real-time client-side variance calculation: surplus (🟢 `+X.XX`), shortage (🔴 `-X.XX`), or balanced (⚪ `0.00`).
+- Manager approval posts atomic stock adjustments; rejection preserves inventory intact.
+- Complete decision trail with timestamps and reviewer notes.
 
 ### F6 — Waste Reporting and Approval
-> Staff report damaged or spoiled ingredients against a batch. Approved reports deduct stock and record the reason, quantity, and estimated loss.
-
-**How it works:**
-1. Staff selects ingredient, optionally links to a batch, picks a reason (Damaged/Spoiled/Expired/Contaminated/Other)
-2. Estimated financial loss is auto-calculated from cost × quantity
-3. Manager reviews and either **Approves** (stock deducted via DB transaction) or **Rejects**
-4. Full audit trail with financial loss tracking in BDT
+- Staff report damaged, spoiled, or expired ingredients linked to specific batches.
+- Auto-calculates estimated financial loss in BDT (`quantity × unit_cost`).
+- Manager reviews and approves, deducting stock atomically from inventory and batch records.
 
 ---
 
 ## 🛠️ Tech Stack
 
 | Layer | Technology |
-|-------|-----------|
-| Backend | PHP 8.4, Laravel 11 |
-| Frontend | Blade, Bootstrap 5, Font Awesome 6, Vanilla JS |
-| Database | SQLite (easy setup) / MySQL (production) |
-| Architecture | MVC — Models, Controllers, Service Classes, Blade Views |
+|---|---|
+| **Backend** | PHP 8.4, Laravel 11 (MVC Architecture) |
+| **Frontend** | Blade Templates, Bootstrap 5, Font Awesome 6, Vanilla JS |
+| **Database** | SQLite (development/demonstration) & MySQL compatible |
+| **Business Logic** | Dedicated Domain Service Classes (`SaleService`, `ReorderService`, `PurchaseOrderService`, `StockReconciliationService`, `WasteReportService`) |
 
 ---
 
 ## 🚀 Setup & Installation
 
-### Prerequisites
-- PHP 8.4+ with extensions: `pdo_sqlite`, `mbstring`, `xml`, `dom`
-- Composer
-
-### Steps
-
 ```bash
-# 1. Clone the repository
+# 1. Clone repository
 git clone https://github.com/zhnverse/Restaurant-Supply-Chain-and-Inventory-Hub.git
 cd Restaurant-Supply-Chain-and-Inventory-Hub
 
 # 2. Install dependencies
 composer install
 
-# 3. Copy environment file
+# 3. Environment configuration
 cp .env.example .env
-
-# 4. Generate application key
 php artisan key:generate
 
-# 5. Create SQLite database
+# 4. Migrate database & seed complete sample data
 touch database/database.sqlite
-
-# 6. Run migrations and seed sample data
 php artisan migrate --seed
 
-# 7. Start development server
+# 5. Start development server
 php artisan serve
 ```
 
-Then visit: **http://localhost:8000**
+Visit: **http://localhost:8000**
 
-### Sample Login Credentials
+### 🔑 Demo Credentials
 | Role | Email | Password |
-|------|-------|----------|
-| Manager | manager@restaurant.com | password |
-| Staff | staff1@restaurant.com | password |
+|---|---|---|
+| **Manager** | `manager@restaurant.com` | `password` |
+| **Staff** | `staff1@restaurant.com` | `password` |
+
+*(Or use the 1-click Quick Login buttons on the `/login` screen)*
 
 ---
 
-## 📁 Project Structure
-
-```
-app/
-├── Http/Controllers/
-│   ├── DashboardController.php
-│   ├── StockReconciliationController.php   ← F5
-│   └── WasteReportController.php           ← F6
-├── Models/
-│   ├── Ingredient.php
-│   ├── IngredientBatch.php
-│   ├── StockReconciliation.php             ← F5
-│   ├── StockReconciliationItem.php         ← F5
-│   └── WasteReport.php                    ← F6
-└── Services/
-    ├── StockReconciliationService.php      ← F5 business logic
-    └── WasteReportService.php             ← F6 business logic
-
-database/migrations/
-├── ..._create_ingredients_table.php
-├── ..._create_ingredient_batches_table.php
-├── ..._create_stock_reconciliations_table.php
-├── ..._create_stock_reconciliation_items_table.php
-└── ..._create_waste_reports_table.php
-
-resources/views/
-├── layouts/app.blade.php                  ← Modern sidebar layout
-├── dashboard.blade.php
-├── stock-reconciliations/
-│   ├── index.blade.php
-│   ├── create.blade.php
-│   └── show.blade.php
-└── waste-reports/
-    ├── index.blade.php
-    ├── create.blade.php
-    └── show.blade.php
-```
-
----
-
-## 🎨 UI Features
-- **Dark sidebar** navigation with live pending-count badges
-- **Dashboard** with stat cards, recent activity, low-stock alerts
-- **Real-time variance** calculation as you type physical counts
-- **Status badges** — color-coded Pending/Approved/Rejected
-- **Modal confirmations** for approve/reject with manager notes
-- **Activity timeline** on detail pages
-- Fully **responsive** (Bootstrap 5)
-
----
-
-## 👥 Team Members
-
-| Student ID | Name |
-|-----------|------|
-| 23301563 | Kumar Shagata Biswas |
-| 19301025 | Shuddho Sadik |
-| 24341207 | Md Zahid Hasan Nerob |
-
----
-
-## 📝 AI Tool Usage Disclosure
-*(As required by Section 9 of the SRS)*
-
-| Feature | AI Tool | How Used | Can Explain? |
-|---------|---------|----------|--------------|
-| F5, F6 | Antigravity (Google DeepMind) | Generated scaffolding code for models, controllers, service classes, and Blade views | Yes |
+## 👥 Prepared By
+- **Md Zahid Hasan Nerob** (ID: 24341207)
+- **Kumar Shagata Biswas** (ID: 23301563)
+- **Shuddho Sadik** (ID: 19301025)

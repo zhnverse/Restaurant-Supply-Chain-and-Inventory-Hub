@@ -160,10 +160,10 @@ List every requirement and its associated feature(s) below. Per the Project Outl
 
 | Req. ID | Requirement | Feature Description | Actor | MVC Components Touched | Sprint Completed | Status |
 | :---- | :---- | :---- | :---- | :---- | :---- | :---- |
-| R1 (F1) | Recipe-based inventory deduction | Define ingredient quantities for each dish. Recording a sale deducts the required quantities automatically. Reject transaction if usable stock is insufficient. | Inventory Staff / Cashier | Model: Recipe, Dish, Ingredient; View: sales/create; Controller: SaleController, RecipeService | Sprint 2 | Planned |
-| R2 (F2) | Batch expiry monitoring | Record ingredient batches with expiry dates. Display expired and soon-to-expire batches using a configurable warning window. Exclude expired stock from usable inventory. | Inventory Staff / Manager | Model: IngredientBatch; View: batches/index, batches/alerts; Controller: BatchController | Sprint 2 | Planned |
-| R3 (F3) | Automatic reorder drafting | When usable stock falls below its threshold, calculate quantity needed to reach target level and generate draft purchase order. Prevent duplicate drafts. | Scheduled System Process / Manager | Model: PurchaseOrder, Ingredient; View: purchase-orders/drafts; Controller: ReorderService, PurchaseOrderController | Sprint 3 | Planned |
-| R4 (F4) | Purchase-order approval | Managers review, adjust, approve, or reject reorder drafts. Only approved orders become visible to suppliers. Preserve decision and reason. | Restaurant Manager | Model: PurchaseOrder; View: purchase-orders/show, purchase-orders/review; Controller: PurchaseOrderApprovalController | Sprint 3 | Planned |
+| R1 (F1) | Recipe-based inventory deduction | Define ingredient quantities for each dish. Recording a sale deducts the required quantities automatically. Reject transaction if usable stock is insufficient. | Inventory Staff / Cashier | Model: Dish, RecipeIngredient, Sale, SaleDeduction; View: dishes/{index,create}, sales/{index,create}; Controller: DishController, SaleController, SaleService | Sprint 1 | Done |
+| R2 (F2) | Batch expiry monitoring | Record ingredient batches with expiry dates. Display expired and soon-to-expire batches using a configurable warning window. Exclude expired stock from usable inventory. | Inventory Staff / Manager | Model: IngredientBatch, Ingredient; View: batches/{index,create}; Controller: BatchController | Sprint 1 | Done |
+| R3 (F3) | Automatic reorder drafting | When usable stock falls below its threshold, calculate quantity needed to reach target level and generate draft purchase order. Prevent duplicate drafts. | Scheduled System Process / Manager | Model: PurchaseOrder, PurchaseOrderItem, Ingredient; View: purchase-orders/{index,create,show}; Controller: PurchaseOrderController, ReorderService | Sprint 1 | Done |
+| R4 (F4) | Purchase-order approval | Managers review, adjust, approve, or reject reorder drafts. Only approved orders become visible to suppliers. Preserve decision and reason. | Restaurant Manager | Model: PurchaseOrder, PurchaseOrderItem; View: purchase-orders/show; Controller: PurchaseOrderController, PurchaseOrderService | Sprint 1 | Done |
 | R5 (F5) | Physical stock reconciliation | Staff submit physical stock counts. System calculates differences from recorded stock, and managers review, approve, or reject proposed adjustments. Approved adjustments update actual stock. | Inventory Staff (Submit), Restaurant Manager (Approve/Reject) | Model: StockReconciliation, StockReconciliationItem, Ingredient; View: stock-reconciliations/{index,create,show}; Controller: StockReconciliationController, StockReconciliationService | Sprint 1 | Done |
 | R6 (F6) | Waste reporting and approval | Staff report damaged or spoiled ingredients against a batch. Approved reports deduct stock and record reason, quantity, and estimated financial loss. | Inventory Staff (Report), Restaurant Manager (Approve/Reject) | Model: WasteReport, Ingredient, IngredientBatch; View: waste-reports/{index,create,show}; Controller: WasteReportController, WasteReportService | Sprint 1 | Done |
 | R7 (F7) | Supplier quotation comparison and award | Managers issue procurement request. Suppliers submit quotations, and managers compare totals and delivery dates before awarding one quotation. | Restaurant Manager / Supplier | Model: ProcurementRequest, Quotation; View: quotations/compare; Controller: QuotationController | Sprint 3 | Planned |
@@ -186,7 +186,7 @@ List every requirement and its associated feature(s) below. Per the Project Outl
 | Minimum features required (per Project Outline, Section 7\) | 20 |
 | :---- | :---- |
 | Total features listed in Section 4 above | 20 |
-| Total features fully completed (“Done” per Section 7.2 of the Project Outline) | 2 (F5, F6) |
+| Total features fully completed (“Done” per Section 7.2 of the Project Outline) | 6 (F1, F2, F3, F4, F5, F6) |
 
 # **5\. External Interface Requirements (Optional)**
 
@@ -245,10 +245,14 @@ Per the Project Outline's Academic Integrity & AI Usage Policy (Section 6), disc
 # **10\. Individual Contribution Summary**
 
 **Student:** Md Zahid Hasan Nerob (ID: 24341207)  
-**Assigned Features:**
-- **Feature 5 (F5): Physical Stock Reconciliation:** Implemented end-to-end MVC architecture. Created `StockReconciliation` and `StockReconciliationItem` models, `StockReconciliationController`, `StockReconciliationService` for transaction-safe stock variance updates, interactive Blade views with real-time variance calculation, and manager approval/rejection modal workflows.
-- **Feature 6 (F6): Waste Reporting and Approval:** Implemented `WasteReport` model, `WasteReportController`, `WasteReportService` handling atomic stock deductions and batch decrements, auto-calculation of estimated financial loss in BDT, and complete audit history with status badges and timeline views.
-- **Repository Setup & Deployment:** Initialized Laravel 11 project with SQLite database seeding, responsive Bootstrap 5 dark-sidebar theme, and pushed production-ready code to GitHub.
+**Assigned / Implemented Features:**
+- **Feature 1 (F1): Recipe-Based Inventory Deduction:** Defined dish models and portion ingredient recipes. Built POS sale recording with live recipe verification and atomic inventory deduction across earliest active batches (FIFO). Enforced strict transaction rejection when usable stock is insufficient.
+- **Feature 2 (F2): Batch Expiry Monitoring:** Implemented batch tracking with configurable warning windows (3, 7, 14, 30 days), critical shelf-life status badges, and automated exclusion of expired batches from usable kitchen inventory.
+- **Feature 3 (F3): Automatic Reorder Drafting:** Implemented low-stock detection comparing usable stock against minimum thresholds. Built auto-draft replenishment engine calculating target reorder quantities with duplicate draft prevention.
+- **Feature 4 (F4): Purchase-Order Approval:** Built manager review workflow allowing quantity adjustments, approval, and rejection with mandatory audit logging and decision reasons.
+- **Feature 5 (F5): Physical Stock Reconciliation:** Implemented physical inventory counting, live variance indicators (surplus/shortage), and managerial transactional adjustments.
+- **Feature 6 (F6): Waste Reporting and Approval:** Built staff waste reporting with financial loss auto-calculation in BDT and manager stock deduction approval.
+- **Authentication & Security:** Created dedicated login/logout system with role-based access (Manager vs Staff) and quick 1-click credential switching for evaluation.
 
 # **11\. Pre-Submission Checklist**
 
